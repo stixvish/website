@@ -18,12 +18,18 @@ const repeatedBullets = [
 ];
 ---
 
-<section id="hero" class="flex flex-col items-center justify-center">
+<section
+  id="hero"
+  class="flex w-dvw flex-col items-center justify-center overflow-hidden leading-none"
+>
   <!-- name in bold -->
   <h1 class="text-[22dvw] font-black tracking-tight uppercase">vishesh</h1>
-  <div class="bg-accent whitespace-nowrap">
-    <div class="ticker-scroll">
-      <span class="text-background">
+  <!-- scrolling ticker -->
+  <div
+    class="bg-accent absolute w-full -rotate-3 overflow-hidden whitespace-nowrap"
+  >
+    <div class="ticker-scroll py-[clamp(0.25rem,0.5dvw,1rem)]">
+      <span class="text-background font-black">
         {
           repeatedBullets.map((bullet) => {
             return `${bullet} \u00B7  `;
@@ -44,6 +50,6 @@ const repeatedBullets = [
     }
   }
   .ticker-scroll {
-    animation: scroll 10s linear infinite;
+    animation: scroll 30s linear infinite;
   }
 </style>
