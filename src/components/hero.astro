@@ -1,0 +1,49 @@
+---
+const bioBullets = [
+  "computer science student",
+  "software engineer",
+  "hooper",
+  "dj in training",
+  "chess beginner",
+  "music lover",
+  "gamer",
+  "film critic",
+  "chipotle regular",
+];
+const repeatedBullets = [
+  ...bioBullets,
+  ...bioBullets,
+  ...bioBullets,
+  ...bioBullets,
+];
+---
+
+<section id="hero" class="flex flex-col items-center justify-center">
+  <!-- name in bold -->
+  <h1 class="text-[22dvw] font-black tracking-tight uppercase">vishesh</h1>
+  <div class="bg-accent whitespace-nowrap">
+    <div class="ticker-scroll">
+      <span class="text-background">
+        {
+          repeatedBullets.map((bullet) => {
+            return `${bullet} \u00B7  `;
+          })
+        }
+      </span>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-25%);
+    }
+  }
+  .ticker-scroll {
+    animation: scroll 10s linear infinite;
+  }
+</style>
