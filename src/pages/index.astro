@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import Hero from "../components/hero.astro";
 import Gallery from "../components/gallery.astro";
+import LiveData from "../components/liveData.tsx";
 ---
 
 <html lang="en">
@@ -16,5 +17,6 @@ import Gallery from "../components/gallery.astro";
   <body class="w-dvw">
     <Hero />
     <Gallery />
+    <LiveData client:load />
   </body>
 </html>

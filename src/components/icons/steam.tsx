@@ -2,7 +2,7 @@ export default function Steam({
   size = 14,
   fill = "#c3c3c3",
 }: {
-  size?: number | string;
+  size?: number;
   fill?: string;
 }) {
   return (
