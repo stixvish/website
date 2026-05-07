@@ -1,0 +1,46 @@
+---
+const res = await fetch("https://worker.stixvish.com/images");
+const photos = await res.json();
+---
+
+<section id="photo-strip" class="smooth-entry my-4 w-full overflow-hidden">
+  <div class="photo-scroll flex w-max gap-4">
+    {
+      [...photos, ...photos].map((photo) => (
+        <img
+          src={photo.url}
+          alt={photo.alt}
+          draggable="false"
+          class="pointer-events-none h-[clamp(20rem,22dvw,30rem)] shrink-0 rounded-2xl object-cover"
+        />
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .smooth-entry {
+    animation:
+      pop-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both,
+      fade-in 0.25s ease-out both;
+    animation-delay: 0.25s;
+  }
+  @keyframes p-scroll {
+    from {
+      transform: translateX(-50%);
+    }
+    to {
+      transform: translateX(-0%);
+    }
+  }
+  .photo-scroll {
+    animation: p-scroll 60s linear infinite;
+  }
+  .no-scrollbar {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+</style>

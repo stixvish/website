@@ -7,6 +7,7 @@
   --color-default: #fafaf7;
   --color-accent: #90ee90;
   --color-turq: #14bbfb;
+  --color-muted: #353535;
   /* fonts */
   --font-sans: "Inter", sans-serif;
 }
@@ -16,6 +17,8 @@
     scroll-behavior: smooth;
   }
   body {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1c1c1c 40%, #0a0a0a 100%);
+    background-attachment: fixed;
     background-color: var(--color-background);
     color: var(--color-default);
     font-family: var(--font-sans);
@@ -26,5 +29,23 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+  }
+}
+
+@keyframes pop-up {
+  from {
+    transform: translateY(5rem);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

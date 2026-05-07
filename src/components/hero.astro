@@ -9,6 +9,7 @@ const bioBullets = [
   "gamer",
   "film critic",
   "chipotle regular",
+  "aspiring nomad",
 ];
 const repeatedBullets = [
   ...bioBullets,
@@ -20,17 +21,19 @@ const repeatedBullets = [
 
 <section
   id="hero"
-  class="relative flex w-dvw flex-col items-center justify-center overflow-hidden leading-none"
+  class="relative flex w-full flex-col items-center justify-center overflow-hidden"
 >
   <!-- name in bold -->
-  <h1 class="smooth-entry z-0 text-[22dvw] font-black tracking-tight uppercase">
+  <h1
+    class="smooth-entry z-0 text-[22dvw] leading-none font-black tracking-tight uppercase"
+  >
     vishesh
   </h1>
   <!-- scrolling ticker -->
   <div
-    class="bg-accent ticker-fade-in absolute z-10 -rotate-3 overflow-hidden whitespace-nowrap"
+    class="bg-accent ticker-fade-in absolute left-0 z-10 w-full -rotate-3 overflow-hidden whitespace-nowrap"
   >
-    <div class="ticker-scroll py-[clamp(0.25rem,0.5dvw,1rem)]">
+    <div class="ticker-scroll w-max md:py-1">
       <span class="text-background font-black">
         {
           repeatedBullets.map((bullet) => {
@@ -43,7 +46,7 @@ const repeatedBullets = [
 </section>
 
 <style>
-  @keyframes scroll {
+  @keyframes t-scroll {
     from {
       transform: translateX(0);
     }
@@ -51,24 +54,9 @@ const repeatedBullets = [
       transform: translateX(-25%);
     }
   }
+
   .ticker-scroll {
-    animation: scroll 60s linear infinite;
-  }
-  @keyframes pop-up {
-    from {
-      transform: translateY(5rem);
-    }
-    to {
-      transform: translateY(0);
-    }
-  }
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+    animation: t-scroll 60s linear infinite;
   }
   .smooth-entry {
     animation:
