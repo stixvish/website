@@ -17,20 +17,20 @@ export default function WeatherCard() {
         </div>
       ) : (
         weather && (
-        <div className="flex w-full justify-between gap-4 px-4 py-4 leading-none">
+        <div className="flex w-full justify-between gap-4 px-6 py-6 leading-none md:px-8 md:py-8">
           <div className="flex flex-col justify-center gap-2">
-            <h2 className="text-accent text-[0.825rem] font-bold tracking-tight uppercase">
+            <h2 className="text-accent text-[0.825rem] font-bold tracking-tight uppercase md:text-sm">
               time in chicago ({offset})
             </h2>
-            <h2 className="text-[1.75rem] font-black whitespace-nowrap uppercase">
+            <h2 className="whitespace-nowrap text-[1.75rem] font-black uppercase md:text-5xl">
               {time}
             </h2>
           </div>
           <div className="flex flex-col items-end justify-center gap-2">
-            <h1 className="text-[1.75rem] font-black">
+            <h1 className="text-[1.75rem] font-black md:text-5xl">
               {weather.temperature}&deg;F
             </h1>
-            <h1 className="font-500 text-[0.825rem] whitespace-nowrap lowercase">
+            <h1 className="font-500 whitespace-nowrap text-[0.825rem] lowercase md:text-sm">
               {weather.condition}
             </h1>
           </div>

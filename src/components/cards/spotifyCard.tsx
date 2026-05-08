@@ -6,7 +6,7 @@ export default function SpotifyCard() {
   const { data: spotify, error, loading } = useSpotify();
 
   return (
-    <div className="flex flex-col justify-center overflow-hidden rounded-2xl border-2">
+    <div className="flex h-full flex-col justify-center overflow-hidden rounded-2xl border-2">
       {loading ? (
         <Spinner logo={<Spotify size={25} />} />
       ) : error ? (
@@ -29,13 +29,13 @@ export default function SpotifyCard() {
                   : "last played song"}
               </h2>
             </div>
-            <div className="flex items-center gap-4 px-4 py-4">
+            <div className="flex items-center gap-4 px-4 py-4 md:gap-6 md:px-6 md:py-6">
               <a
                 href={spotify.trackUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <div className="aspect-square h-24">
+                <div className="aspect-square h-24 md:h-36">
                   <img
                     src={spotify.albumArt ?? undefined}
                     alt="spotify song album art"
@@ -43,15 +43,15 @@ export default function SpotifyCard() {
                   />
                 </div>
               </a>
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-1 md:gap-2">
                 <a
                   href={spotify.trackUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <h2 className="font-bold">{spotify.title}</h2>
+                  <h2 className="font-bold md:text-xl">{spotify.title}</h2>
                 </a>
-                <h2 className="italic">
+                <h2 className="italic md:text-base">
                   {spotify.artists.map((a, i) => (
                     <span key={a.url}>
                       <a href={a.url} target="_blank" rel="noopener noreferrer">
@@ -70,27 +70,29 @@ export default function SpotifyCard() {
                     playing from
                   </h2>
                 </div>
-                <div className="flex items-center gap-4 px-4 py-4">
+                <div className="flex items-center gap-4 px-4 py-4 md:gap-6 md:px-6 md:py-6">
                   <a
                     href={spotify.context.url}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <div className="aspect-square h-24">
+                    <div className="aspect-square h-24 md:h-36">
                       <img
                         src={spotify.context.coverUrl}
                         alt="spotify context cover art"
-                        className="h-full rounded-2xl border object-cover"
+                        className="aspect-square h-full rounded-2xl border object-cover"
                       />
                     </div>
                   </a>
-                  <div className="flex flex-col gap-1">
+                  <div className="flex flex-col gap-1 md:gap-2">
                     <a
                       href={spotify.context.url}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <h2 className="font-bold">{spotify.context.name}</h2>
+                      <h2 className="font-bold md:text-xl">
+                        {spotify.context.name}
+                      </h2>
                     </a>
                   </div>
                 </div>

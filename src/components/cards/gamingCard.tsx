@@ -7,7 +7,7 @@ export default function GamingCard() {
   const { data: gaming, error, loading } = useGaming();
 
   return (
-    <div className="flex flex-col justify-center overflow-hidden rounded-2xl border-2">
+    <div className="flex h-full flex-col overflow-hidden rounded-2xl border-2">
       {loading ? (
         <Spinner logo={<Xbox size={25} />} />
       ) : error ? (
@@ -38,16 +38,19 @@ export default function GamingCard() {
                 {gaming.isPlaying ? "currently playing" : "last played game"}
               </h2>
             </div>
-            <div className="flex items-center gap-4 px-4 py-4">
-              <div className="w-24">
-                <img
-                  src={gaming.coverUrl}
-                  alt="game poster"
-                  className="w-full rounded-2xl border object-cover"
-                />
-              </div>
-              <div className="flex flex-col gap-1">
-                <h2 className="font-bold">{gaming.title}</h2>
+            <div className="flex flex-1 flex-col items-center justify-center gap-4 px-6 py-6">
+              <img
+                src={gaming.coverUrl}
+                alt="game poster"
+                className="w-full max-w-40 rounded-2xl border object-cover md:max-w-48"
+              />
+              <div className="flex flex-col items-center gap-1">
+                <h2 className="text-center font-bold md:text-xl">
+                  {gaming.title}
+                </h2>
+                <h2 className="text-[0.825rem]">
+                  {gaming.playtimeTotal} hrs played
+                </h2>
               </div>
             </div>
           </>

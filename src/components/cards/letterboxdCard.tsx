@@ -6,7 +6,7 @@ export default function LetterboxdCard() {
   const { data: letterboxd, error, loading } = useLetterboxd();
 
   return (
-    <div className="flex flex-col justify-center overflow-hidden rounded-2xl border-2">
+    <div className="flex h-full flex-col overflow-hidden rounded-2xl border-2">
       {loading ? (
         <Spinner logo={<Letterboxd height={5} width={30} />} />
       ) : error ? (
@@ -22,9 +22,9 @@ export default function LetterboxdCard() {
                 last watched movie
               </h2>
             </div>
-            <div className="flex items-center gap-4 px-4 py-4">
+            <div className="flex flex-1 items-center gap-4 px-4 py-4 md:gap-6 md:px-6 md:py-6">
               <a href={letterboxd.url ?? undefined} target="_blank" rel="noopener noreferrer">
-                <div className="w-24">
+                <div className="w-24 md:w-32">
                   <img
                     src={letterboxd.posterUrl ?? undefined}
                     alt="letterboxd movie poster"
@@ -32,15 +32,15 @@ export default function LetterboxdCard() {
                   />
                 </div>
               </a>
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-1 md:gap-2">
                 <a href={letterboxd.url ?? undefined} target="_blank" rel="noopener noreferrer">
-                  <h2 className="font-bold">
+                  <h2 className="font-bold md:text-lg">
                     {letterboxd.title} ({letterboxd.year})
                   </h2>
-                  <h2 className="font-bold">{letterboxd.stars}</h2>
+                  <h2 className="font-bold md:text-base">{letterboxd.stars}</h2>
                 </a>
                 {letterboxd.review && (
-                  <h2 className="italic">
+                  <h2 className="italic md:text-sm">
                     &quot;{letterboxd.review.slice(0, 75)}...&quot;
                   </h2>
                 )}

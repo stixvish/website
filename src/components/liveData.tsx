@@ -16,12 +16,12 @@ export default function LiveData() {
           live data
         </h1>
       </div>
-      <div className="mt-2 flex flex-col gap-2 px-4">
-        <WeatherCard />
-        <SpotifyCard />
-        <LetterboxdCard />
-        <GamingCard />
-        <GitHubCard />
+      <div className="mt-2 grid w-full max-w-5xl grid-cols-1 gap-2 px-4 md:grid-cols-3">
+        <div className="md:col-span-3"><WeatherCard /></div>
+        <div className="md:col-span-2"><SpotifyCard /></div>
+        <div className="md:col-span-1"><GamingCard /></div>
+        <div className="md:col-span-1"><LetterboxdCard /></div>
+        <div className="md:col-span-2"><GitHubCard /></div>
       </div>
     </div>
   );
