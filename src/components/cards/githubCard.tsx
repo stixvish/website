@@ -31,7 +31,7 @@ export default function GitHubCard() {
   const { data: github, error, loading } = useGitHub();
 
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-2xl border-2">
+    <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-white/10">
       {loading ? (
         <Spinner logo={<GitHub height={25} />} />
       ) : error ? (
@@ -50,28 +50,28 @@ export default function GitHubCard() {
             </div>
 
             {/* stats row */}
-            <div className="grid grid-cols-2 divide-x border-b">
-              <div className="flex flex-col items-center justify-center gap-1 px-6 py-5 md:py-6">
-                <span className="text-3xl font-black md:text-4xl">
+            <div className="grid grid-cols-2 divide-x divide-white/10 border-b border-white/10">
+              <div className="flex flex-col items-center justify-center gap-1 px-4 py-3">
+                <span className="text-4xl font-black md:text-5xl">
                   {github.totalContributions}
                 </span>
-                <span className="text-[0.825rem] font-bold tracking-tight uppercase">
-                  contributions
+                <span className="text-subtle text-[0.825rem] font-bold tracking-tight uppercase">
+                  contribs
                 </span>
               </div>
-              <div className="flex flex-col items-center justify-center gap-1 px-6 py-5 md:py-6">
-                <span className="text-3xl font-black md:text-4xl">
+              <div className="flex flex-col items-center justify-center gap-1 px-4 py-3">
+                <span className="text-4xl font-black md:text-5xl">
                   {github.streak}
                 </span>
-                <span className="text-[0.825rem] font-bold tracking-tight uppercase">
-                  day streak
+                <span className="text-subtle text-[0.825rem] font-bold tracking-tight uppercase">
+                  streak
                 </span>
               </div>
             </div>
 
             {/* repo + commit */}
             {github.lastRepo && (
-              <div className="flex flex-1 flex-col justify-center gap-3 px-6 py-5 md:px-8 md:py-6">
+              <div className="flex flex-1 flex-col justify-start gap-2 px-5 py-3 md:px-6">
                 <a
                   href={github.lastRepo.url}
                   target="_blank"
@@ -95,12 +95,17 @@ export default function GitHubCard() {
                     </div>
                   )}
                 </a>
+                {github.lastRepo.description && (
+                  <p className="text-subtle text-[0.8rem] leading-snug">
+                    {github.lastRepo.description}
+                  </p>
+                )}
                 {github.lastRepo.lastCommit && (
-                  <div className="flex items-center gap-2">
-                    <span className="font-bold md:text-lg">
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                    <span className="line-clamp-1 font-bold">
                       {github.lastRepo.lastCommit.message}
                     </span>
-                    <span className="text-turq rounded-full border px-2 py-0.5 text-[0.75rem]">
+                    <span className="text-turq shrink-0 rounded-full border px-2 py-0.5 text-[0.75rem]">
                       {github.lastRepo.lastCommit.branch}
                     </span>
                   </div>
@@ -109,7 +114,7 @@ export default function GitHubCard() {
             )}
 
             {/* footer */}
-            <div className="border-muted flex items-center justify-between border-t px-6 py-4 md:px-8 md:py-5">
+            <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 border-t border-white/10 px-5 py-3 md:px-6">
               <a
                 href="https://github.com/stixvish"
                 target="_blank"
@@ -119,7 +124,7 @@ export default function GitHubCard() {
                   <img
                     src={github.avatarUrl ?? undefined}
                     alt="github profile avatar"
-                    className="aspect-square h-full rounded-full border object-cover"
+                    className="aspect-square h-full rounded-full border border-white/10 object-cover"
                   />
                   <h2 className="font-bold md:text-base">@stixvish</h2>
                 </div>

@@ -2,6 +2,7 @@ export type GitHubData = {
   totalContributions: number;
   streak: number;
   avatarUrl: string | null;
+  contributionDays: { date: string; count: number }[];
   lastRepo: {
     name: string;
     description: string | null;

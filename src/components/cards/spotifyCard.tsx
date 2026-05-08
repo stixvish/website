@@ -6,98 +6,90 @@ export default function SpotifyCard() {
   const { data: spotify, error, loading } = useSpotify();
 
   return (
-    <div className="flex h-full flex-col justify-center overflow-hidden rounded-2xl border-2">
+    <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10">
       {loading ? (
-        <Spinner logo={<Spotify size={25} />} />
+        <div className="flex h-full items-center justify-center">
+          <Spinner logo={<Spotify size={25} />} />
+        </div>
       ) : error ? (
-        <div className="flex w-full items-center justify-center gap-2 px-4 py-4 text-[0.825rem] text-red-400">
+        <div className="flex h-full items-center justify-center text-[0.825rem] text-red-400">
           failed to load spotify
         </div>
       ) : (
         spotify && (
           <>
-            <div className="bg-muted flex w-full items-center justify-center gap-2 py-2">
+            {/* background album art */}
+            {spotify.albumArt && (
+              <>
+                <img
+                  src={spotify.albumArt ?? undefined}
+                  alt=""
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-black via-black/60 to-black/10" />
+              </>
+            )}
+
+            {/* top bar */}
+            <div className="relative flex items-center justify-between p-4">
               <span className="relative inline-flex items-center justify-center">
                 {spotify.isPlaying && (
-                  <span className="absolute inset-0 animate-ping rounded-full bg-[#1db954]/50" />
+                  <span className="absolute inset-0 animate-ping rounded-full bg-[#1DB954] opacity-50" />
                 )}
-                <Spotify size={20} />
+                <Spotify size={18} />
               </span>
-              <h2 className="text-accent text-[0.825rem] font-bold tracking-tight uppercase">
-                {spotify.isPlaying
-                  ? "currently listening to"
-                  : "last played song"}
-              </h2>
+              <span className="text-[0.75rem] font-bold uppercase tracking-wider text-white/80">
+                {spotify.isPlaying ? "live · now" : "last played"}
+              </span>
             </div>
-            <div className="flex items-center gap-4 px-4 py-4 md:gap-6 md:px-6 md:py-6">
+
+            {/* spacer */}
+            <div className="flex-1" />
+
+            {/* bottom: song info */}
+            <div className="relative flex flex-col gap-2 p-5 md:p-7">
+              {spotify.context && (
+                <a
+                  href={spotify.context.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mb-1 flex items-center gap-2"
+                >
+                  <img
+                    src={spotify.context.coverUrl}
+                    alt="context cover"
+                    className="aspect-square h-7 w-7 rounded object-cover opacity-80"
+                  />
+                  <span className="text-[0.75rem] tracking-tight text-white/50 uppercase">
+                    {spotify.context.name}
+                  </span>
+                </a>
+              )}
               <a
                 href={spotify.trackUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <div className="aspect-square h-24 md:h-36">
-                  <img
-                    src={spotify.albumArt ?? undefined}
-                    alt="spotify song album art"
-                    className="h-full rounded-2xl border object-cover"
-                  />
-                </div>
-              </a>
-              <div className="flex flex-col gap-1 md:gap-2">
-                <a
-                  href={spotify.trackUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <h2 className="font-bold md:text-xl">{spotify.title}</h2>
-                </a>
-                <h2 className="italic md:text-base">
-                  {spotify.artists.map((a, i) => (
-                    <span key={a.url}>
-                      <a href={a.url} target="_blank" rel="noopener noreferrer">
-                        {a.name}
-                      </a>
-                      {i < spotify.artists.length - 1 && ", "}
-                    </span>
-                  ))}
+                <h2 className="text-2xl leading-tight font-black md:text-3xl">
+                  {spotify.title}
                 </h2>
-              </div>
-            </div>
-            {spotify.context && (
-              <>
-                <div className="bg-muted flex w-full items-center justify-center gap-2 py-2">
-                  <h2 className="text-accent text-[0.825rem] font-bold tracking-tight uppercase">
-                    playing from
-                  </h2>
-                </div>
-                <div className="flex items-center gap-4 px-4 py-4 md:gap-6 md:px-6 md:py-6">
-                  <a
-                    href={spotify.context.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <div className="aspect-square h-24 md:h-36">
-                      <img
-                        src={spotify.context.coverUrl}
-                        alt="spotify context cover art"
-                        className="aspect-square h-full rounded-2xl border object-cover"
-                      />
-                    </div>
-                  </a>
-                  <div className="flex flex-col gap-1 md:gap-2">
+              </a>
+              <p className="text-sm text-white/60 italic">
+                {spotify.artists.map((a, i) => (
+                  <span key={a.url}>
                     <a
-                      href={spotify.context.url}
+                      href={a.url}
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="hover:text-white/90"
                     >
-                      <h2 className="font-bold md:text-xl">
-                        {spotify.context.name}
-                      </h2>
+                      {a.name}
                     </a>
-                  </div>
-                </div>
-              </>
-            )}
+                    {i < spotify.artists.length - 1 && ", "}
+                  </span>
+                ))}
+              </p>
+            </div>
           </>
         )
       )}
