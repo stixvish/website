@@ -15,6 +15,6 @@ export default defineConfig({
   image: {
     domains: ["worker.stixvish.com"],
   },
-  adapter: cloudflare(),
+  adapter: cloudflare({ imageService: "passthrough" }),
   integrations: [react()],
 });

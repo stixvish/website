@@ -1,8 +1,7 @@
 ---
-import { Image } from "astro:assets";
-
 const res = await fetch("https://worker.stixvish.com/images");
-const photos = await res.json();
+const photos: { url: string; alt: string; width: number; height: number }[] =
+  await res.json();
 ---
 
 <!-- photo strip -->
@@ -10,7 +9,7 @@ const photos = await res.json();
   <div id="photo-strip-inner" class="flex w-max gap-4 opacity-0">
     {
       [...photos, ...photos].map((photo) => (
-        <Image
+        <img
           src={photo.url}
           alt={photo.alt}
           width={photo.width}
