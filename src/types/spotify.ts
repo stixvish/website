@@ -1,9 +1,9 @@
 export type SpotifyData = {
   isPlaying: boolean;
   title: string;
-  artist: string;
+  artists: { name: string; url: string }[];
   album: string;
-  albumArt: string;
+  albumArt: string | null;
   trackUrl: string;
   context: {
     name: string;

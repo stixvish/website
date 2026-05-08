@@ -30,6 +30,9 @@
     margin: 0;
     padding: 0;
   }
+  a {
+    cursor: pointer;
+  }
 }
 
 @keyframes pop-up {

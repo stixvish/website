@@ -1,6 +1,7 @@
 export type GitHubData = {
   totalContributions: number;
   streak: number;
+  avatarUrl: string | null;
   lastRepo: {
     name: string;
     description: string | null;
@@ -9,6 +10,10 @@ export type GitHubData = {
     language: {
       name: string;
       color: string;
-    };
-  };
+    } | null;
+    lastCommit: {
+      message: string | null;
+      branch: string;
+    } | null;
+  } | null;
 };

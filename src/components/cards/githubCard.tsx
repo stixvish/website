@@ -34,8 +34,12 @@ export default function GitHubCard() {
     <div className="flex flex-col justify-center overflow-hidden rounded-2xl border-2">
       {loading ? (
         <Spinner logo={<GitHub height={25} />} />
+      ) : error ? (
+        <div className="flex w-full items-center justify-center gap-2 px-4 py-4 text-[0.825rem] text-red-400">
+          failed to load github
+        </div>
       ) : (
-        github && (
+        github && github.lastRepo && (
           <>
             <div className="bg-muted flex w-full items-center justify-center gap-2 py-2">
               <GitHub height={25} />
@@ -45,20 +49,22 @@ export default function GitHubCard() {
             </div>
             <div className="flex items-center justify-between px-4 py-4">
               <a
-                href={github?.lastRepo.url}
+                href={github.lastRepo.url}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <h2 className="font-bold">{github.lastRepo.name}</h2>
-                <div className="flex items-center gap-1">
-                  <div
-                    className="h-3 w-3 rounded-full"
-                    style={{ backgroundColor: github.lastRepo.language.color }}
-                  />
-                  <h2 className="text-[0.825rem]">
-                    {github.lastRepo.language.name}
-                  </h2>
-                </div>
+                {github.lastRepo.language && (
+                  <div className="flex items-center gap-1">
+                    <div
+                      className="h-3 w-3 rounded-full"
+                      style={{ backgroundColor: github.lastRepo.language.color }}
+                    />
+                    <h2 className="text-[0.825rem]">
+                      {github.lastRepo.language.name}
+                    </h2>
+                  </div>
+                )}
               </a>
               <div>
                 <h2>{github.lastRepo.description}</h2>

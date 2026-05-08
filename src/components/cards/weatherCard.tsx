@@ -8,10 +8,15 @@ export default function WeatherCard() {
   const { time, offset } = useTime("America/Chicago");
 
   return (
-    <div className="flex justify-center rounded-2xl border-2 md:w-[40vw]">
+    <div className="flex justify-center rounded-2xl border-2">
       {loading ? (
         <Spinner logo={<Weather size={25} />} />
+      ) : error ? (
+        <div className="flex w-full items-center justify-center gap-2 px-4 py-4 text-[0.825rem] text-red-400">
+          failed to load weather
+        </div>
       ) : (
+        weather && (
         <div className="flex w-full justify-between gap-4 px-4 py-4 leading-none">
           <div className="flex flex-col justify-center gap-2">
             <h2 className="text-accent text-[0.825rem] font-bold tracking-tight uppercase">
@@ -30,6 +35,7 @@ export default function WeatherCard() {
             </h1>
           </div>
         </div>
+        )
       )}
     </div>
   );

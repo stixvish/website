@@ -9,41 +9,45 @@ export default function LetterboxdCard() {
     <div className="flex flex-col justify-center overflow-hidden rounded-2xl border-2">
       {loading ? (
         <Spinner logo={<Letterboxd height={5} width={30} />} />
+      ) : error ? (
+        <div className="flex w-full items-center justify-center gap-2 px-4 py-4 text-[0.825rem] text-red-400">
+          failed to load letterboxd
+        </div>
       ) : (
-        <>
-          <div className="bg-muted flex w-full items-center justify-center gap-2 py-2">
-            <Letterboxd height={5} width={30} />
-            <h2 className="text-accent text-[0.825rem] font-bold tracking-tight uppercase">
-              last watched movie
-            </h2>
-          </div>
-          <div className="flex items-center gap-4 px-4 py-4">
-            <a href={letterboxd?.url} target="_blank" rel="noopener noreferrer">
-              <div className="w-24">
-                <img
-                  src={letterboxd?.posterUrl}
-                  alt="letterboxd movie poster"
-                  className="w-full rounded-2xl border object-cover"
-                />
-              </div>
-            </a>
-            <div className="flex flex-col gap-1">
-              <a
-                href={letterboxd?.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <h2 className="font-bold">
-                  {letterboxd?.title} ({letterboxd?.year})
-                </h2>
-                <h2 className="font-bold">{letterboxd?.stars}</h2>
-              </a>
-              <h2 className="italic">
-                &quot;{letterboxd?.review.slice(0, 75)}...&quot;
+        letterboxd && (
+          <>
+            <div className="bg-muted flex w-full items-center justify-center gap-2 py-2">
+              <Letterboxd height={5} width={30} />
+              <h2 className="text-accent text-[0.825rem] font-bold tracking-tight uppercase">
+                last watched movie
               </h2>
             </div>
-          </div>
-        </>
+            <div className="flex items-center gap-4 px-4 py-4">
+              <a href={letterboxd.url ?? undefined} target="_blank" rel="noopener noreferrer">
+                <div className="w-24">
+                  <img
+                    src={letterboxd.posterUrl ?? undefined}
+                    alt="letterboxd movie poster"
+                    className="w-full rounded-2xl border object-cover"
+                  />
+                </div>
+              </a>
+              <div className="flex flex-col gap-1">
+                <a href={letterboxd.url ?? undefined} target="_blank" rel="noopener noreferrer">
+                  <h2 className="font-bold">
+                    {letterboxd.title} ({letterboxd.year})
+                  </h2>
+                  <h2 className="font-bold">{letterboxd.stars}</h2>
+                </a>
+                {letterboxd.review && (
+                  <h2 className="italic">
+                    &quot;{letterboxd.review.slice(0, 75)}...&quot;
+                  </h2>
+                )}
+              </div>
+            </div>
+          </>
+        )
       )}
     </div>
   );
