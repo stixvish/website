@@ -45,29 +45,3 @@ const repeatedBullets = [
     </div>
   </div>
 </section>
-
-<style>
-  @keyframes t-scroll {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-25%);
-    }
-  }
-
-  .ticker-scroll {
-    animation: t-scroll 60s linear infinite;
-  }
-  .smooth-entry {
-    animation:
-      pop-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both,
-      fade-in 0.25s ease-out both;
-  }
-  .ticker-fade-in {
-    animation:
-      pop-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both,
-      fade-in 0.3s ease-in-out both;
-    animation-delay: 0.75s;
-  }
-</style>

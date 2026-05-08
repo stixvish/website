@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 import Hero from "../components/hero.astro";
-import Gallery from "../components/gallery.astro";
+import Gallery from "../components/gallery.tsx";
 import LiveData from "../components/liveData.tsx";
 ---
 
@@ -16,7 +16,7 @@ import LiveData from "../components/liveData.tsx";
   </head>
   <body class="w-dvw">
     <Hero />
-    <Gallery />
+    <Gallery client:load />
     <LiveData client:load />
   </body>
 </html>

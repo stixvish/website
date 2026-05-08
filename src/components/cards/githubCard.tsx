@@ -39,7 +39,8 @@ export default function GitHubCard() {
           failed to load github
         </div>
       ) : (
-        github && github.lastRepo && (
+        github &&
+        github.lastRepo && (
           <>
             <div className="bg-muted flex w-full items-center justify-center gap-2 py-2">
               <GitHub height={25} />
@@ -47,7 +48,7 @@ export default function GitHubCard() {
                 last commit
               </h2>
             </div>
-            <div className="flex items-center justify-between px-4 py-4">
+            <div className="px-4 py-4">
               <a
                 href={github.lastRepo.url}
                 target="_blank"
@@ -58,7 +59,9 @@ export default function GitHubCard() {
                   <div className="flex items-center gap-1">
                     <div
                       className="h-3 w-3 rounded-full"
-                      style={{ backgroundColor: github.lastRepo.language.color }}
+                      style={{
+                        backgroundColor: github.lastRepo.language.color,
+                      }}
                     />
                     <h2 className="text-[0.825rem]">
                       {github.lastRepo.language.name}
@@ -66,6 +69,18 @@ export default function GitHubCard() {
                   </div>
                 )}
               </a>
+              <div>
+                <h2>{github.lastRepo.description}</h2>
+              </div>
+            </div>
+            <div className="px-4 py-4">
+              {github.lastRepo.lastCommit && (
+                <>
+                  <h2 className="font-bold">
+                    {github.lastRepo.lastCommit.message}
+                  </h2>
+                </>
+              )}
               <div>
                 <h2>{github.lastRepo.description}</h2>
               </div>
@@ -78,7 +93,7 @@ export default function GitHubCard() {
               >
                 <div className="flex h-8 items-center gap-2">
                   <img
-                    src="https://images.stixvish.com/profile_cropped.jpeg"
+                    src={github.avatarUrl ?? undefined}
                     alt="github profile avatar"
                     className="aspect-square h-full rounded-full border object-cover"
                   />
