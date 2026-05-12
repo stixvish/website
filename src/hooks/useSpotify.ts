@@ -7,9 +7,13 @@ export function useSpotify() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const controller = new AbortController();
+    let currentController: AbortController | null = null;
 
     async function fetchSpotify() {
+      currentController?.abort();
+      const controller = new AbortController();
+      currentController = controller;
+
       try {
         const res = await fetch("https://worker.stixvish.com/spotify", {
           cache: "no-store",
@@ -32,7 +36,7 @@ export function useSpotify() {
 
     return () => {
       clearInterval(interval);
-      controller.abort();
+      currentController?.abort();
     };
   }, []);
 

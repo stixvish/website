@@ -22,17 +22,19 @@ const repeatedBullets = [
 <!-- hero section -->
 <section
   id="hero"
-  class="relative flex w-full flex-col items-center justify-center overflow-hidden"
+  class="relative mt-4 flex w-full flex-col items-center justify-center overflow-hidden"
 >
   <!-- name in bold -->
   <h1
-    class="smooth-entry z-0 text-[22dvw] leading-none font-black tracking-tight uppercase"
+    class="smooth-entry z-0 text-[min(22dvw,30rem)] leading-[0.8] font-black tracking-tighter uppercase"
+    style="animation-delay: 0.2s"
   >
     vishesh
   </h1>
   <!-- scrolling ticker -->
   <div
-    class="bg-accent ticker-fade-in absolute left-0 z-10 w-full -rotate-3 overflow-hidden whitespace-nowrap"
+    id="ticker-banner"
+    class="bg-accent absolute left-0 z-10 w-full -rotate-3 overflow-hidden whitespace-nowrap opacity-0"
   >
     <div class="ticker-scroll w-max md:py-1">
       <span class="text-background font-black">
@@ -45,3 +47,12 @@ const repeatedBullets = [
     </div>
   </div>
 </section>
+
+<script>
+  window.addEventListener("gallery-loaded", () => {
+    const ticker = document.getElementById("ticker-banner");
+    if (!ticker) return;
+    ticker.classList.remove("opacity-0");
+    ticker.classList.add("ticker-fade-in");
+  });
+</script>

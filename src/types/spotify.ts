@@ -1,13 +1,17 @@
 export type SpotifyData = {
   isPlaying: boolean;
-  title: string;
+  name: string;
+  url: string;
   artists: { name: string; url: string }[];
-  album: string;
-  albumArt: string | null;
-  trackUrl: string;
-  context: {
+  album: {
     name: string;
     url: string;
-    coverUrl: string;
+    cover: { url: string; width: number; height: number };
+  };
+  context: {
+    type: string;
+    name: string;
+    url: string;
+    cover: { url: string; width: number | null; height: number | null };
   } | null;
 };

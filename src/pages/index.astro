@@ -2,7 +2,6 @@
 import "../styles/global.css";
 import Hero from "../components/hero.astro";
 import Gallery from "../components/gallery.tsx";
-import LiveData from "../components/liveData.tsx";
 ---
 
 <html lang="en">
@@ -12,11 +11,18 @@ import LiveData from "../components/liveData.tsx";
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="description" content="Vishesh Gupta's portfolio" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+    />
     <title>vishesh&apos;s portfolio</title>
   </head>
-  <body class="w-full overflow-x-hidden">
+  <body>
     <Hero />
+    <!-- photo strip -->
     <Gallery client:load />
-    <LiveData client:load />
   </body>
 </html>
