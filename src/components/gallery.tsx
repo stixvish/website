@@ -39,22 +39,26 @@ export default function Gallery() {
     const total = images.length;
     let loaded = 0;
     let revealTimer: ReturnType<typeof setTimeout>;
+    let revealed = false;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      clearTimeout(fallbackTimer);
+      const elapsed = Date.now() - mountTime;
+      const wait = Math.max(0, 800 - elapsed);
+      revealTimer = setTimeout(() => {
+        inner.classList.add("photo-scroll");
+        section.classList.add("smooth-entry");
+      }, wait);
+    }
+
+    // 2s hard cap — if images are still loading, show anyway
+    const fallbackTimer = setTimeout(reveal, 2000);
 
     function onLoad() {
       loaded++;
-      if (loaded >= total) {
-        // ensure name animation (0.2s delay + 0.5s duration) has finished
-        const elapsed = Date.now() - mountTime;
-        const wait = Math.max(0, 800 - elapsed);
-        revealTimer = setTimeout(() => {
-          inner.classList.add("photo-scroll");
-          section.classList.add("smooth-entry");
-          // let gallery animation play before ticker fires
-          setTimeout(() => {
-            window.dispatchEvent(new CustomEvent("gallery-loaded"));
-          }, 500);
-        }, wait);
-      }
+      if (loaded >= total) reveal();
     }
 
     function onError(e: Event) {
@@ -72,6 +76,7 @@ export default function Gallery() {
 
     return () => {
       clearTimeout(revealTimer);
+      clearTimeout(fallbackTimer);
       images.forEach((img) => {
         img.removeEventListener("load", onLoad);
         img.removeEventListener("error", onError);

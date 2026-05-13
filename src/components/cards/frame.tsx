@@ -32,8 +32,8 @@ export function Row({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex items-center justify-between gap-4 border-b border-white/[0.07] py-2.5">
-      <span className="shrink-0 text-[9px] font-bold tracking-[0.18em] text-gray-500 uppercase">
+    <div className="flex items-center justify-between gap-4 border-b border-white/[0.07] py-3">
+      <span className="shrink-0 text-[11px] font-bold tracking-[0.18em] text-gray-500 uppercase">
         {label}
       </span>
       <div className="min-w-0 text-right">{children}</div>

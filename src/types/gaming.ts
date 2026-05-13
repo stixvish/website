@@ -5,4 +5,5 @@ export type GamingData = {
   cover: { url?: string; width: number | null; height: number | null };
   lastPlayedAt: string;
   playtimeMinutes: number;
+  status?: string | null;
 };
