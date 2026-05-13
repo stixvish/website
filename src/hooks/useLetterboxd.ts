@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
-import type { SpotifyData } from "../types";
+import type { LetterboxdData } from "../types";
 
-export function useSpotify() {
-  const [data, setData] = useState<SpotifyData | null>(null);
+export function useLetterboxd() {
+  const [data, setData] = useState<LetterboxdData | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let currentController: AbortController | null = null;
 
-    async function fetchSpotify() {
+    async function fetchLetterboxd() {
       currentController?.abort();
       const controller = new AbortController();
       currentController = controller;
 
       try {
-        const res = await fetch("https://worker.stixvish.com/spotify", {
+        const res = await fetch("https://worker.stixvish.com/letterboxd", {
           cache: "no-store",
           signal: controller.signal,
         });
@@ -32,8 +32,8 @@ export function useSpotify() {
       }
     }
 
-    fetchSpotify();
-    const interval = setInterval(fetchSpotify, 30_000);
+    fetchLetterboxd();
+    const interval = setInterval(fetchLetterboxd, 300_000);
 
     return () => {
       clearInterval(interval);

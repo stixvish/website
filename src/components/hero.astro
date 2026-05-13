@@ -22,7 +22,7 @@ const repeatedBullets = [
 <!-- hero section -->
 <section
   id="hero"
-  class="relative mt-4 flex w-full flex-col items-center justify-center overflow-hidden"
+  class="absolute inset-0 z-10 flex w-full flex-col items-center justify-center overflow-hidden"
 >
   <!-- name in bold -->
   <h1
@@ -40,7 +40,7 @@ const repeatedBullets = [
       <span class="text-background font-black">
         {
           repeatedBullets.map((bullet) => {
-            return `${bullet} \u00B7  `;
+            return `${bullet} ·  `;
           })
         }
       </span>
@@ -49,7 +49,7 @@ const repeatedBullets = [
 </section>
 
 <script>
-  window.addEventListener("gallery-loaded", () => {
+  window.addEventListener("cards-loaded", () => {
     const ticker = document.getElementById("ticker-banner");
     if (!ticker) return;
     ticker.classList.remove("opacity-0");

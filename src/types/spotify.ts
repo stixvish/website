@@ -14,4 +14,9 @@ export type SpotifyData = {
     url: string;
     cover: { url: string; width: number | null; height: number | null };
   } | null;
+  progress: {
+    positionMs: number;
+    durationMs: number;
+    timestamp: number;
+  } | null;
 };

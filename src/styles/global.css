@@ -88,4 +88,13 @@
   .photo-scroll {
     animation: p-scroll 60s linear infinite;
   }
+  .spin-record {
+    animation: spin 4s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

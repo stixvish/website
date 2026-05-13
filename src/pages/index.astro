@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import Hero from "../components/hero.astro";
 import Gallery from "../components/gallery.tsx";
+import Cards from "../components/cards.tsx";
 ---
 
 <html lang="en">
@@ -21,8 +22,12 @@ import Gallery from "../components/gallery.tsx";
     <title>vishesh&apos;s portfolio</title>
   </head>
   <body>
-    <Hero />
-    <!-- photo strip -->
-    <Gallery client:load />
+    <!-- hero + gallery fused into one block -->
+    <div class="relative mt-4">
+      <Gallery client:load />
+      <Hero />
+    </div>
+    <!-- cards -->
+    <Cards client:load />
   </body>
 </html>

@@ -82,10 +82,10 @@ export default function Gallery() {
   const doubled = [...photos, ...photos];
 
   return (
-    <section ref={sectionRef} className="mt-4 overflow-hidden opacity-0">
+    <section ref={sectionRef} className="overflow-hidden opacity-0">
       <div
         ref={innerRef}
-        className="flex h-[clamp(200px,35dvw,350px)] w-max gap-4"
+        className="flex h-[clamp(100px,30dvw,400px)] w-max gap-4 opacity-50"
       >
         {doubled.map((photo, i) => (
           <img
